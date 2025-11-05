@@ -1,0 +1,3 @@
+aws-cdk-lib==2.100.0 # Pin version để đảm bảo tính nhất quán
+constructs>=10.0.0,<11.0.0
+boto3==1.40.45

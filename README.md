@@ -91,7 +91,7 @@ graph TD
 
   * Tài khoản AWS và cấu hình AWS CLI với quyền truy cập phù hợp.
   * Node.js v22+ và AWS CDK v2 (`npm install -g aws-cdk`).
-  * Python 3.11+.
+  * Python 3.9+.
 
 Clone repository này:
 

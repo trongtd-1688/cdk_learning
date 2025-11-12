@@ -44,7 +44,7 @@ class OrderProcessingStack(Stack):
         # VPC with public and private subnets + NAT Gateway
         vpc = ec2.Vpc(self, "OrderProcessingVpc",
                       max_azs=1,
-                      # nat_gateways=1,
+                      nat_gateways=1,
                       subnet_configuration=[
                           ec2.SubnetConfiguration(
                               name="public-subnet",
@@ -74,27 +74,27 @@ class OrderProcessingStack(Stack):
 
         email_queue_dlq = sqs.Queue(self, "EmailQueueDLQ")
         email_queue = sqs.Queue(self, "EmailQueue",
-                                visibility_timeout=Duration.seconds(300),
+                                visibility_timeout=Duration.seconds(60),
                                 dead_letter_queue=sqs.DeadLetterQueue(
-                                    max_receive_count=3,
+                                    max_receive_count=2,
                                     queue=email_queue_dlq
                                 )
                                 )
 
         inventory_queue_dlq = sqs.Queue(self, "InventoryQueueDLQ")
         inventory_queue = sqs.Queue(self, "InventoryQueue",
-                                    visibility_timeout=Duration.seconds(300),
+                                    visibility_timeout=Duration.seconds(60),
                                     dead_letter_queue=sqs.DeadLetterQueue(
-                                        max_receive_count=3,
+                                        max_receive_count=2,
                                         queue=inventory_queue_dlq
                                     )
                                     )
 
         db_update_queue_dlq = sqs.Queue(self, "DbUpdateQueueDLQ")
         db_update_queue = sqs.Queue(self, "DbUpdateQueue",
-                                    visibility_timeout=Duration.seconds(300),
+                                    visibility_timeout=Duration.seconds(60),
                                     dead_letter_queue=sqs.DeadLetterQueue(
-                                        max_receive_count=3,
+                                        max_receive_count=2,
                                         queue=db_update_queue_dlq
                                     )
                                     )

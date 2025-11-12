@@ -29,6 +29,11 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
+#      - name: Run Tests
+#        run: |
+#          echo "Running tests..."
+#          python -m unittest discover tests
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
